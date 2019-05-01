@@ -11,13 +11,18 @@
 #include <chrono>
 #include <cstdint>
 
-class NanoTimer 
+class NanoTimer
 {
 public:
-  inline void start()
-    { startTime = std::chrono::high_resolution_clock::now(); }
-  inline uint64_t stop()
-    { return (std::chrono::high_resolution_clock::now() - startTime).count(); }
+    inline void start()
+    {
+        startTime = std::chrono::high_resolution_clock::now();
+    }
+    inline uint64_t stop() const
+    {
+        return (std::chrono::high_resolution_clock::now() - startTime).count();
+    }
+
 private:
   using TimePoint = std::chrono::high_resolution_clock::time_point;
   TimePoint startTime;
